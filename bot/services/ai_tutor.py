@@ -244,6 +244,7 @@ Be constructive and encouraging while being accurate. Provide explanations suita
     ) -> Dict[str, Any]:
         """
         Evaluate a speaking (Sprechen) submission.
+        Includes analysis of accent, sentiment, and emotional tone.
         
         Args:
             transcribed_text: Text transcribed from voice message
@@ -255,6 +256,9 @@ Be constructive and encouraging while being accurate. Provide explanations suita
         """
         try:
             evaluation_prompt = f"""You are evaluating a German speaking submission (transcribed from audio) for a {level} level student.
+            
+SPECIAL FOCUS: 
+Analyze the student's "Accent Sentimental Understanding" - this includes evaluating the emotional tone, sentiment, and perceived confidence in the spoken German (as far as can be determined from the transcribed text and its structure).
 
 SPEAKING TASK:
 {prompt}
@@ -263,10 +267,11 @@ TRANSCRIBED RESPONSE:
 {transcribed_text}
 
 EVALUATION CRITERIA:
-1. Grammar (25%): Correct use of grammar appropriate for {level} level
-2. Vocabulary (25%): Range and appropriateness of vocabulary
-3. Task Completion (25%): How well the response addresses the prompt
-4. Fluency (25%): Natural flow and expression (based on transcription)
+1. Grammar (20%): Correct use of grammar appropriate for {level} level
+2. Vocabulary (20%): Range and appropriateness of vocabulary
+3. Task Completion (20%): How well the response addresses the prompt
+4. Fluency & Sentiment (20%): Natural flow, perceived confidence, and appropriate emotional tone
+5. Accent & Pronunciation (20%): Based on the transcription patterns, identify potential pronunciation or accent-related issues (e.g., common phonetic misspellings in transcription).
 
 Please provide your evaluation in the following JSON format:
 {{
@@ -274,9 +279,12 @@ Please provide your evaluation in the following JSON format:
         "grammar": <0-100>,
         "vocabulary": <0-100>,
         "task_completion": <0-100>,
-        "fluency": <0-100>
+        "fluency_sentiment": <0-100>,
+        "accent_pronunciation": <0-100>
     }},
     "overall_score": <0-100>,
+    "sentiment_analysis": "Brief analysis of the student's emotional tone and confidence",
+    "accent_feedback": "Specific feedback on potential accent/pronunciation issues",
     "mistakes": [
         {{"original": "...", "correction": "...", "explanation": "..."}}
     ],
@@ -285,7 +293,7 @@ Please provide your evaluation in the following JSON format:
     "suggestions": ["..."]
 }}
 
-Be constructive and encouraging. Consider that this is transcribed speech, so some errors might be transcription artifacts."""
+Be constructive and encouraging. Consider that this is transcribed speech, so some errors might be transcription artifacts. Focus on helping the student sound more natural and confident."""
 
             async with httpx.AsyncClient(timeout=90.0) as client:
                 response = await client.post(

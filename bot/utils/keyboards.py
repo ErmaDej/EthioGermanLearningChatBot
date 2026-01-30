@@ -14,11 +14,11 @@ class Keyboards:
     def main_menu() -> InlineKeyboardMarkup:
         """Main menu keyboard."""
         keyboard = [
-            [InlineKeyboardButton("Learn with AI Tutor", callback_data="menu_learn")],
-            [InlineKeyboardButton("Take Practice Exam", callback_data="menu_exam")],
-            [InlineKeyboardButton("View My Progress", callback_data="menu_progress")],
-            [InlineKeyboardButton("Settings", callback_data="menu_settings")],
-            [InlineKeyboardButton("Help", callback_data="menu_help")]
+            [InlineKeyboardButton("👨‍🏫 Learn with AI Tutor", callback_data="menu_learn")],
+            [InlineKeyboardButton("📝 Take Practice Exam", callback_data="menu_exam")],
+            [InlineKeyboardButton("📊 View My Progress", callback_data="menu_progress")],
+            [InlineKeyboardButton("⚙️ Settings", callback_data="menu_settings")],
+            [InlineKeyboardButton("❓ Help", callback_data="menu_help")]
         ]
         return InlineKeyboardMarkup(keyboard)
     
@@ -27,19 +27,19 @@ class Keyboards:
         """Learning options menu."""
         keyboard = [
             [
-                InlineKeyboardButton("Free Conversation", callback_data="learn_conversation"),
-                InlineKeyboardButton("Grammar", callback_data="learn_grammar")
+                InlineKeyboardButton("💬 Free Conversation", callback_data="learn_conversation"),
+                InlineKeyboardButton("📖 Grammar", callback_data="learn_grammar")
             ],
             [
-                InlineKeyboardButton("Lesen (Reading)", callback_data="learn_lesen"),
-                InlineKeyboardButton("Horen (Listening)", callback_data="learn_horen")
+                InlineKeyboardButton("📚 Lesen (Reading)", callback_data="learn_lesen"),
+                InlineKeyboardButton("🎧 Horen (Listening)", callback_data="learn_horen")
             ],
             [
-                InlineKeyboardButton("Schreiben (Writing)", callback_data="learn_schreiben"),
-                InlineKeyboardButton("Sprechen (Speaking)", callback_data="learn_sprechen")
+                InlineKeyboardButton("✍️ Schreiben (Writing)", callback_data="learn_schreiben"),
+                InlineKeyboardButton("🗣️ Sprechen (Speaking)", callback_data="learn_sprechen")
             ],
-            [InlineKeyboardButton("Vokabular (Vocabulary)", callback_data="learn_vokabular")],
-            [InlineKeyboardButton("Back to Main Menu", callback_data="menu_main")]
+            [InlineKeyboardButton("📑 Vokabular (Vocabulary)", callback_data="learn_vokabular")],
+            [InlineKeyboardButton("🔙 Back to Main Menu", callback_data="menu_main")]
         ]
         return InlineKeyboardMarkup(keyboard)
     
@@ -48,16 +48,16 @@ class Keyboards:
         """Exam selection menu."""
         keyboard = [
             [
-                InlineKeyboardButton("Lesen Exam", callback_data="exam_lesen"),
-                InlineKeyboardButton("Horen Exam", callback_data="exam_horen")
+                InlineKeyboardButton("📖 Lesen Exam", callback_data="exam_lesen"),
+                InlineKeyboardButton("🎧 Horen Exam", callback_data="exam_horen")
             ],
             [
-                InlineKeyboardButton("Schreiben Exam", callback_data="exam_schreiben"),
-                InlineKeyboardButton("Sprechen Exam", callback_data="exam_sprechen")
+                InlineKeyboardButton("✍️ Schreiben Exam", callback_data="exam_schreiben"),
+                InlineKeyboardButton("🗣️ Sprechen Exam", callback_data="exam_sprechen")
             ],
-            [InlineKeyboardButton("Vokabular Exam", callback_data="exam_vokabular")],
-            [InlineKeyboardButton("Full Mock Exam", callback_data="exam_full")],
-            [InlineKeyboardButton("Back to Main Menu", callback_data="menu_main")]
+            [InlineKeyboardButton("📑 Vokabular Exam", callback_data="exam_vokabular")],
+            [InlineKeyboardButton("🎓 Full Mock Exam", callback_data="exam_full")],
+            [InlineKeyboardButton("🔙 Back to Main Menu", callback_data="menu_main")]
         ]
         return InlineKeyboardMarkup(keyboard)
     

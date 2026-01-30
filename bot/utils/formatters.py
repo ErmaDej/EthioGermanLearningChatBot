@@ -12,47 +12,47 @@ class Formatters:
     def welcome_message(user_name: str, level: str) -> str:
         """Format welcome message for new/returning users."""
         return f"""
-Willkommen bei EthioGerman Language School!
-Welcome, {user_name}!
+✨ *Willkommen bei EthioGerman Language School!* ✨
+👋 Welcome back, *{user_name}*!
 
-Your current level: {level}
+🎓 *Current Level:* `{level}`
 
 What would you like to do today?
-Was mochten Sie heute tun?
+_Was möchten Sie heute tun?_
 """
     
     @staticmethod
     def help_message() -> str:
         """Format help/instructions message."""
         return """
-*EthioGerman Language School - Help*
+*EthioGerman Language School - Help* ℹ️
 
 *Commands:*
-/start - Start the bot / Main menu
-/menu - Open main menu
-/learn - Start learning session
-/exam - Take a practice exam
-/progress - View your progress
-/settings - Change settings
-/help - Show this help
-/cancel - Cancel current action
+🚀 /start - Start the bot / Main menu
+📱 /menu - Open main menu
+🧠 /learn - Start learning session
+📝 /exam - Take a practice exam
+📊 /progress - View your progress
+⚙️ /settings - Change settings
+❓ /help - Show this help
+❌ /cancel - Cancel current action
 
 *Features:*
-- AI-powered German tutoring
-- Goethe exam simulation
-- Voice message practice
-- Progress tracking
+🤖 AI-powered German tutoring
+🎓 Goethe exam simulation
+🎙️ Voice message practice
+📈 Progress tracking
 
 *Levels:* A1, A2, B1 (CEFR)
 
 *Skills:*
-- Lesen (Reading)
-- Horen (Listening)
-- Schreiben (Writing)
-- Sprechen (Speaking)
-- Vokabular (Vocabulary)
+📖 Lesen (Reading)
+🎧 Horen (Listening)
+✍️ Schreiben (Writing)
+🗣️ Sprechen (Speaking)
+📑 Vokabular (Vocabulary)
 
-*Support:* Contact @EthioGermanSchool
+*Support:* Contact @EthioGermanSchool 📞
 """
     
     @staticmethod
@@ -60,21 +60,21 @@ Was mochten Sie heute tun?
         """Format subscription information."""
         if not expiry_date:
             return """
-*Subscription Status:* Not Active
+⚠️ *Subscription Status:* Not Active
 
 You don't have an active subscription.
-Please contact @EthioGermanSchool to activate.
+Please contact @EthioGermanSchool to activate. 🔑
 """
         
         expiry_str = expiry_date.strftime('%d %B %Y')
-        status = "Active" if is_active else "Expired"
+        status = "✅ Active" if is_active else "❌ Expired"
         
         return f"""
-*Subscription Status:* {status}
-*Expires:* {expiry_str}
+💎 *Subscription Status:* {status}
+📅 *Expires:* `{expiry_str}`
 
-{"Your subscription is active. Enjoy learning!" if is_active else "Please renew your subscription to continue."}
-Contact: @EthioGermanSchool
+{"✨ Your subscription is active. Enjoy learning!" if is_active else "🔔 Please renew your subscription to continue."}
+📞 Contact: @EthioGermanSchool
 """
     
     @staticmethod
@@ -88,43 +88,43 @@ Contact: @EthioGermanSchool
         
         # Create progress bar
         filled = int(avg_score / 10)
-        progress_bar = '|' + '' * filled + '' * (10 - filled) + '|'
+        progress_bar = '🟩' * filled + '⬜' * (10 - filled)
         
         # Format skill scores
         skill_text = ""
         skill_icons = {
-            'lesen': '',
-            'horen': '',
-            'schreiben': '',
-            'sprechen': '',
-            'vokabular': ''
+            'lesen': '📖',
+            'horen': '🎧',
+            'schreiben': '✍️',
+            'sprechen': '🗣️',
+            'vokabular': '📑'
         }
         
         for skill, score in skill_scores.items():
-            icon = skill_icons.get(skill, '')
-            stars = '' * int(score / 25) + '' * (4 - int(score / 25))
-            skill_text += f"{icon} {skill.capitalize()}: {score:.0f}% {stars}\n"
+            icon = skill_icons.get(skill, '🔹')
+            stars = '⭐' * int(score / 25) + '🌑' * (4 - int(score / 25))
+            skill_text += f"{icon} *{skill.capitalize()}:* `{score:.0f}%` {stars}\n"
         
         # Format weak areas
         weak_text = ""
         if weak_areas:
-            weak_text = "\n*Areas to Improve:*\n"
+            weak_text = "\n🔍 *Areas to Improve:*\n"
             for area in weak_areas[:3]:
-                weak_text += f"- {area}\n"
+                weak_text += f"• {area}\n"
         
         return f"""
-*Your Progress Summary*
+📊 *Your Progress Summary*
 
-*Level:* {level}
-*Overall Score:* {avg_score:.0f}%
+🎓 *Level:* `{level}`
+📈 *Overall Score:* `{avg_score:.0f}%`
 {progress_bar}
 
-*Skills:*
-{skill_text if skill_text else "No data yet. Start practicing!"}
+🏆 *Skills:*
+{skill_text if skill_text else "_No data yet. Start practicing!_"}
 
-*Total Activities:* {total}
+🔢 *Total Activities:* `{total}`
 {weak_text}
-*Tip:* Practice your weak areas to improve faster!
+💡 *Tip:* Practice your weak areas to improve faster!
 """
     
     @staticmethod
@@ -135,10 +135,10 @@ Contact: @EthioGermanSchool
         passage: Optional[str] = None
     ) -> str:
         """Format exam question display."""
-        header = f"*Question {question_num}/{total}*\n\n"
+        header = f"❓ *Question {question_num}/{total}*\n\n"
         
         if passage:
-            return f"{header}*Text:*\n_{passage}_\n\n*Question:*\n{question_text}"
+            return f"{header}📖 *Text:*\n_{passage}_\n\n🎯 *Question:*\n{question_text}"
         
         return f"{header}{question_text}"
     
@@ -152,33 +152,33 @@ Contact: @EthioGermanSchool
         weak_areas: List[str]
     ) -> str:
         """Format exam results."""
-        status = "PASSED" if passed else "NEEDS IMPROVEMENT"
-        emoji = "" if passed else ""
+        status = "✅ PASSED" if passed else "❌ NEEDS IMPROVEMENT"
+        emoji = "🎉" if passed else "📚"
         
         # Create score visualization
         filled = int(score / 10)
-        score_bar = '' * filled + '' * (10 - filled)
+        score_bar = '🟩' * filled + '⬜' * (10 - filled)
         
         result = f"""
-*{exam_type.upper()} Exam Results* {emoji}
+🏁 *{exam_type.upper()} Exam Results* {emoji}
 
-*Score:* {score:.1f}%
+⭐ *Score:* `{score:.1f}%`
 [{score_bar}]
 
-*Correct Answers:* {correct}/{total}
-*Status:* {status}
+🎯 *Correct Answers:* `{correct}/{total}`
+📝 *Status:* {status}
 
 """
         
         if weak_areas:
-            result += "*Areas to Review:*\n"
+            result += "🔍 *Areas to Review:*\n"
             for area in weak_areas[:3]:
-                result += f"- {area}\n"
+                result += f"• {area}\n"
         
         if passed:
-            result += "\nGreat job! Keep up the good work!"
+            result += "\n🌟 Great job! Keep up the good work!"
         else:
-            result += "\nDon't worry! Practice makes perfect. Try again!"
+            result += "\n💡 Don't worry! Practice makes perfect. Try again!"
         
         return result
     
@@ -190,39 +190,37 @@ Contact: @EthioGermanSchool
         mistakes = evaluation.get('mistakes', [])
         strengths = evaluation.get('strengths', [])
         suggestions = evaluation.get('suggestions', [])
-        corrected = evaluation.get('corrected_text', '')
         
         result = f"""
-*Writing Evaluation*
+✍️ *Writing Evaluation*
 
-*Overall Score:* {overall:.0f}%
+⭐ *Overall Score:* `{overall:.0f}%`
 
-*Breakdown:*
-- Grammar: {scores.get('grammar', 0)}%
-- Vocabulary: {scores.get('vocabulary', 0)}%
-- Task Completion: {scores.get('task_completion', 0)}%
-- Coherence: {scores.get('coherence', 0)}%
+📊 *Breakdown:*
+• Grammar: `{scores.get('grammar', 0)}%`
+• Vocabulary: `{scores.get('vocabulary', 0)}%`
+• Task Completion: `{scores.get('task_completion', 0)}%`
+• Coherence: `{scores.get('coherence', 0)}%`
 
 """
-        
         if strengths:
-            result += "*Strengths:*\n"
+            result += "🌟 *Strengths:*\n"
             for s in strengths[:3]:
-                result += f"- {s}\n"
+                result += f"• {s}\n"
             result += "\n"
         
         if mistakes:
-            result += "*Corrections:*\n"
+            result += "🛠️ *Corrections:*\n"
             for m in mistakes[:3]:
-                result += f'- "{m.get("original", "")}" "{m.get("correction", "")}"\n'
+                result += f'• "{m.get("original", "")}" ➔ "{m.get("correction", "")}"\n'
                 if m.get('explanation'):
                     result += f'  _{m["explanation"]}_\n'
             result += "\n"
         
         if suggestions:
-            result += "*Suggestions:*\n"
+            result += "💡 *Suggestions:*\n"
             for s in suggestions[:2]:
-                result += f"- {s}\n"
+                result += f"• {s}\n"
         
         return result
     
@@ -234,36 +232,44 @@ Contact: @EthioGermanSchool
         mistakes = evaluation.get('mistakes', [])
         tips = evaluation.get('pronunciation_tips', [])
         strengths = evaluation.get('strengths', [])
+        sentiment = evaluation.get('sentiment_analysis', '')
+        accent = evaluation.get('accent_feedback', '')
         
         result = f"""
-*Speaking Evaluation*
+🗣️ *Speaking Evaluation*
 
-*Overall Score:* {overall:.0f}%
+⭐ *Overall Score:* `{overall:.0f}%`
 
-*Breakdown:*
-- Grammar: {scores.get('grammar', 0)}%
-- Vocabulary: {scores.get('vocabulary', 0)}%
-- Task Completion: {scores.get('task_completion', 0)}%
-- Fluency: {scores.get('fluency', 0)}%
+📊 *Breakdown:*
+• Grammar: `{scores.get('grammar', 0)}%`
+• Vocabulary: `{scores.get('vocabulary', 0)}%`
+• Task Completion: `{scores.get('task_completion', 0)}%`
+• Fluency & Sentiment: `{scores.get('fluency_sentiment', 0)}%`
+• Accent & Pronunciation: `{scores.get('accent_pronunciation', 0)}%`
 
 """
-        
+        if sentiment:
+            result += f"🎭 *Tone & Confidence:* \n_{sentiment}_\n\n"
+            
+        if accent:
+            result += f"🗣️ *Accent Analysis:* \n_{accent}_\n\n"
+            
         if strengths:
-            result += "*Strengths:*\n"
+            result += "🌟 *Strengths:*\n"
             for s in strengths[:3]:
-                result += f"- {s}\n"
+                result += f"• {s}\n"
             result += "\n"
         
         if tips:
-            result += "*Pronunciation Tips:*\n"
+            result += "💡 *Pronunciation Tips:*\n"
             for t in tips[:3]:
-                result += f"- {t}\n"
+                result += f"• {t}\n"
             result += "\n"
         
         if mistakes:
-            result += "*Corrections:*\n"
+            result += "🛠️ *Corrections:*\n"
             for m in mistakes[:3]:
-                result += f'- "{m.get("original", "")}" "{m.get("correction", "")}"\n'
+                result += f'• "{m.get("original", "")}" ➔ "{m.get("correction", "")}"\n'
         
         return result
     
